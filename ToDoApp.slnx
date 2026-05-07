@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 <Solution>
   <Project Path="TO_DO/TO_DO.csproj" />
 </Solution>
+=======
+<Solution>
+  <Project Path="TO_DO/TO_DO.csproj" />
+</Solution>
+>>>>>>> 67bd732a7c4addeea4659ebef25b659c903dc1fc
