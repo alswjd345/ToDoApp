@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿using System.Text;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -18,15 +17,15 @@ namespace TO_DO
     public partial class MainWindow : Window
     {
         List<CheckBox> ToDolist = new List<CheckBox>();
-        List<CheckBox> Searchlist = new List<CheckBox>();
-      
+        List<string> Searchlist = new List<string>();
+
 
         public MainWindow()
         {
             InitializeComponent();
         }
-     
-      
+
+
 
         private void add_data(object sender, RoutedEventArgs e)
         {
@@ -45,8 +44,8 @@ namespace TO_DO
                 ToDolist.Add(checkbox);
                 TodoTextBox.Text = "";
             }
-            
-           
+
+
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -56,8 +55,9 @@ namespace TO_DO
 
             foreach (CheckBox items in TodoListBox.Items)
             {
-                if (items.IsChecked==true){
-                    
+                if (items.IsChecked == true)
+                {
+
                     hasChecked = true;
                     removelist.Add(items);
                 }
@@ -66,7 +66,7 @@ namespace TO_DO
             {
                 TodoListBox.Items.Remove(items);
             }
-            
+
             if (!hasChecked)
             {
                 MessageBox.Show("삭제할 항목이 없습니다");
@@ -83,94 +83,40 @@ namespace TO_DO
                 MessageBox.Show("검색어를 입력해주세요");
                 return;
             }
+            List<string> searchList = new List<string>();
 
-            //var result=ToDolist.Where(x => x.Contains(SearchData)).ToList();
-
-            foreach (CheckBox checkBox in TodoListBox.Items)
+            foreach (CheckBox checkBox in ToDolist)
             {
-                string result=checkBox.Content.ToString();
-                if (result.Contains(SearchData) == true)
+                //serach데이터 포함되는지 확인하고 리스트 넣기
+                string text = checkBox.Content.ToString();
+                if (text.Contains(SearchData) == true)
                 {
-                    Searchlist.Add(checkBox);
+                    searchList.Add(text);
                 }
             }
             TodoListBox.Items.Clear();
-            foreach (CheckBox items in Searchlist)
+            //search 데이터 화면에 보여줌
+            foreach (string item in searchList)
+            {
+                TodoListBox.Items.Add(new CheckBox
+                {
+                    Content = item
+                });
+            }
+          
+
+
+        }
+
+        private void AllSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            TodoTextBox.Text = "";
+            TodoListBox.Items.Clear();
+            foreach (CheckBox items in ToDolist)
             {
                 TodoListBox.Items.Add(items);
             }
-
         }
     }
-=======
-﻿using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace TO_DO
-{
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-     
-      
-
-        private void add_data(object sender, RoutedEventArgs e)
-        {
-            string todo = TodoTextBox.Text;
-
-            if (string.IsNullOrEmpty(todo))
-            {
-                MessageBox.Show("내용을 입력해주세요");
-                return;
-            }
-            else
-            {
-                CheckBox checkbox = new CheckBox();
-                checkbox.Content = TodoTextBox.Text;
-                TodoListBox.Items.Add(checkbox);
-                TodoTextBox.Text = "";
-            }
-            
-           
-        }
-
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            bool hasChecked = false;
-            var removelist = new List<CheckBox>();
-
-            foreach (CheckBox items in TodoListBox.Items)
-            {
-                if (items.IsChecked==true){
-                    
-                    hasChecked = true;
-                    removelist.Add(items);
-                }
-            }
-            foreach (CheckBox items in removelist)
-            {
-                TodoListBox.Items.Remove(items);
-            }
-            
-            if (!hasChecked)
-            {
-                MessageBox.Show("삭제할 항목이 없습니다");
-            }
-        }
-    }
->>>>>>> 67bd732a7c4addeea4659ebef25b659c903dc1fc
 }
