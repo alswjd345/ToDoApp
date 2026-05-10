@@ -14,20 +14,15 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="Auto"/>
+                
             </Grid.RowDefinitions>
 
             <StackPanel Margin="0,0,0,24">
-                <TextBlock Text="오늘의 TODO"
-                           FontSize="28"
-                           FontWeight="Bold"
-                           Foreground="#111827"/>
+                <TextBlock Text="오늘의 TODO" FontSize="28" FontWeight="Bold"  Foreground="#111827"/>
 
-                <TextBlock Text="할 일을 추가하고 관리해보세요"
-                           FontSize="13"
-                           Foreground="#6B7280"
-                           Margin="0,6,0,0"/>
+                <TextBlock Text="할 일을 추가하고 관리해보세요" FontSize="13" Foreground="#6B7280"  Margin="0,6,0,0"/>
             </StackPanel>
 
             <Border Grid.Row="1"
@@ -43,67 +38,43 @@
                         <ColumnDefinition Width="55"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBox x:Name="TodoTextBox"
-                             Height="38"
-                             FontSize="14"
-                             BorderThickness="0"
-                             Background="Transparent"
-                             VerticalContentAlignment="Center"
-                             Padding="8"
-                             Foreground="#111827"/>
+                    <TextBox x:Name="TodoTextBox"  Height="38"  FontSize="14"  BorderThickness="0"   Background="Transparent"  VerticalContentAlignment="Center"
+                             Padding="8"  Foreground="#111827"/>
 
-                    <Button x:Name="SearchButton"
-                            Grid.Column="1"
-                            Content="검색"
-                            Height="38"
-                            Margin="8,0,0,0"
-                            Background="#2563EB"
-                            Foreground="White"
-                            BorderThickness="0"
-                            FontWeight="Bold"
-                            Click="SearchButton_Click"/>
+                    <Button x:Name="SearchButton" Grid.Column="1"  Content="검색"   Height="38"  Margin="8,0,0,0"    Background="#2563EB"  Foreground="White"
+                            BorderThickness="0"   FontWeight="Bold"  Click="SearchButton_Click"/>
                     
-                    <Button x:Name="AddButton"
-                            Grid.Column="2"
-                            Content="추가"
-                            Height="38"
-                            Margin="8,0,0,0"
-                            Background="#2563EB"
-                            Foreground="White"
-                            BorderThickness="0"
-                            FontWeight="Bold"
-                            Click="add_data"/>
+                    <Button x:Name="AddButton" Grid.Column="2"    Content="추가" Height="38"   Margin="8,0,0,0" Background="#2563EB"  Foreground="White"
+                            BorderThickness="0"  FontWeight="Bold"  Click="add_data"/>
                     
-                    <Button x:Name="AllSearchButton"
-                            Grid.Column="3"
-                            Content="전체보기"
-                            Height="38"
-                            Margin="8,0,0,0"
-                            Background="#2563EB"
-                            Foreground="White"
-                            BorderThickness="0"
-                            FontWeight="Bold"
-                            Click="AllSearchButton_Click"/>
+                    <Button x:Name="AllSearchButton" Grid.Column="3"  Content="전체보기"  Height="38"  Margin="8,0,0,0"  Background="#2563EB"   Foreground="White"
+                            BorderThickness="0"  FontWeight="Bold"  Click="AllSearchButton_Click"/>
                 </Grid>
             </Border>
 
-            <ListBox x:Name="TodoListBox"
-                     Grid.Row="2"
-                     BorderThickness="0"
-                     Background="#F9FAFB"
-                     Padding="8"
-                     FontSize="14"/>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <ListBox x:Name="TodoListBox" BorderThickness="0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" >
+                                <CheckBox Grid.Column="0" IsChecked="{Binding Ischecked}"  Margin="0,0,10,0"/>
+                                <TextBox  Text="{Binding Title}" Visibility="{Binding Editing}"  BorderThickness="0" Width="300" IsReadOnly="True" VerticalAlignment="Center"/>
+                                <Button Grid.Column="2" Content="수정" Width="50" Background="Gray" Foreground="White" BorderThickness="0"  Click="EditOrSave_Click" />
+                        </StackPanel>
 
-            <Button x:Name="DeleteButton"
-                    Grid.Row="3"
-                    Content="선택한 할 일 삭제"
-                    Height="40"
-                    Margin="0,18,0,0"
-                    Background="#EF4444"
-                    Foreground="White"
-                    BorderThickness="0"
-                    FontWeight="Bold"
-                    Click="DeleteButton_Click"
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                    
+            </ListBox>
+            </Grid>
+
+            <Button x:Name="DeleteButton" Grid.Row="3" Content="선택한 할 일 삭제"  Height="40"  Margin="0,18,0,0" Background="#EF4444"  Foreground="White" 
+                    BorderThickness="0"  FontWeight="Bold" Click="DeleteButton_Click"
                     />
         </Grid>
     </Border>
