@@ -19,11 +19,16 @@
                 
             </Grid.RowDefinitions>
 
-            <StackPanel Margin="0,0,0,24">
+            <Grid>
                 <TextBlock Text="오늘의 TODO" FontSize="28" FontWeight="Bold"  Foreground="#111827"/>
-
-                <TextBlock Text="할 일을 추가하고 관리해보세요" FontSize="13" Foreground="#6B7280"  Margin="0,6,0,0"/>
-            </StackPanel>
+                <StackPanel HorizontalAlignment="Right">
+                    <TextBlock x:Name="alllistCount" FontSize="10" Foreground="#6B7280"  Margin="6,6,6,0"/>
+                    <TextBlock x:Name="process"    FontSize="10" Foreground="#6B7280"  Margin="6,6,6,0"/>
+                    <TextBlock x:Name="complete"  FontSize="10" Foreground="#6B7280"  Margin="6,6,6,0"/>
+                </StackPanel>    
+            </Grid>
+            
+            
 
             <Border Grid.Row="1"
                     Background="#F9FAFB"
@@ -62,7 +67,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" >
-                                <CheckBox Grid.Column="0" IsChecked="{Binding Ischecked}"  Margin="0,0,10,0"/>
+                                <CheckBox Grid.Column="0" IsChecked="{Binding Ischecked}" Checked="CheckBox_Checked" Unchecked="CheckBoxUnChecked" Margin="0,0,10,0" />
                                 <TextBox  Text="{Binding Title}" Visibility="{Binding Editing}"  BorderThickness="0" Width="300" IsReadOnly="True" VerticalAlignment="Center"/>
                                 <Button Grid.Column="2" Content="수정" Width="50" Background="Gray" Foreground="White" BorderThickness="0"  Click="EditOrSave_Click" />
                         </StackPanel>

@@ -43,6 +43,7 @@ namespace TO_DO
                 ToDolist.Add(item);
                 TodoListBox.Items.Add(item);
                 TodoTextBox.Text = "";
+                UpdateCount();
             }
     
 
@@ -53,20 +54,22 @@ namespace TO_DO
             bool hasChecked = false;
             var removelist = new List<ToDoItem>();
 
-            foreach (ToDoItem items in TodoListBox.Items)
+            foreach (ToDoItem items in ToDolist)
             {
                 if (items.Ischecked == true)
                 {
 
                     hasChecked = true;
                     removelist.Add(items);
+                    
                 }
             }
-            foreach (ToDoItem items in removelist)
+            foreach(ToDoItem item in removelist)
             {
-                TodoListBox.Items.Remove(items);
+                ToDolist.Remove(item);
             }
-
+            AllSearchButton_Click(null,null);
+            UpdateCount();
             if (!hasChecked)
             {
                 MessageBox.Show("삭제할 항목이 없습니다");
@@ -141,6 +144,25 @@ namespace TO_DO
                 text.IsReadOnly = true;
                 MessageBox.Show("저장되었습니다");
             }
+        }
+        public void UpdateCount()
+        {
+            int countNum=ToDolist.Count;
+            alllistCount.Text = $"전체 : {countNum} 개";
+            int processNum = ToDolist.Count(x=>!x.Ischecked);
+            process.Text = $"진행중 : {processNum}개";
+            int completeNum = ToDolist.Count(x =>x.Ischecked);
+            complete.Text = $"완료 : {completeNum}개";
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateCount();
+        }
+
+        private void CheckBoxUnChecked(object sender, RoutedEventArgs e)
+        {
+            UpdateCount();
         }
     }
 
