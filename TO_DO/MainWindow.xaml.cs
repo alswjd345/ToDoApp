@@ -8,7 +8,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.IO;
+using System.Text.Json;
+using System.Collections.ObjectModel;
 
 namespace TO_DO
 {
@@ -24,7 +26,21 @@ namespace TO_DO
         public MainWindow()
         {
             InitializeComponent();
+            this.Closing += MainWindow_Closing;
         }
+
+        private string filePath = "todo.json";
+
+        private void SaveToDoList()
+        {
+            string json = JsonSerializer.Serialize(ToDolist);
+            File.WriteAllText(filePath, json);
+        }
+        private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            SaveToDoList();
+        }
+      
 
 
 
