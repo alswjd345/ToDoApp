@@ -21,7 +21,7 @@ namespace TO_DO
     {
         List<ToDoItem> ToDolist = new List<ToDoItem>();
         List<string> Searchlist = new List<string>();
-        
+        private string filePath = "todo.json";
 
         public MainWindow()
         {
@@ -29,7 +29,7 @@ namespace TO_DO
             this.Closing += MainWindow_Closing;
         }
 
-        private string filePath = "todo.json";
+        
 
         private void SaveToDoList()
         {
@@ -179,6 +179,14 @@ namespace TO_DO
         private void CheckBoxUnChecked(object sender, RoutedEventArgs e)
         {
             UpdateCount();
+        }
+
+        private void TodoTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                add_data(null, null);
+            }
         }
     }
 

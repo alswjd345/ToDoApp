@@ -43,7 +43,7 @@
                         <ColumnDefinition Width="55"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBox x:Name="TodoTextBox"  Height="38"  FontSize="14"  BorderThickness="0"   Background="Transparent"  VerticalContentAlignment="Center"
+                    <TextBox x:Name="TodoTextBox" KeyDown="TodoTextBox_KeyDown" Height="38"  FontSize="14"  BorderThickness="0"   Background="Transparent"  VerticalContentAlignment="Center"
                              Padding="8"  Foreground="#111827"/>
 
                     <Button x:Name="SearchButton" Grid.Column="1"  Content="검색"   Height="38"  Margin="8,0,0,0"    Background="#2563EB"  Foreground="White"
