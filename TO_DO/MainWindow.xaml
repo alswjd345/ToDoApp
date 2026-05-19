@@ -68,7 +68,20 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" >
                                 <CheckBox Grid.Column="0" IsChecked="{Binding Ischecked}" Checked="CheckBox_Checked" Unchecked="CheckBoxUnChecked" Margin="0,0,10,0" />
-                                <TextBox  Text="{Binding Title}" Visibility="{Binding Editing}"  BorderThickness="0" Width="300" IsReadOnly="True" VerticalAlignment="Center"/>
+                                <TextBox  Text="{Binding Title}" Visibility="{Binding Editing}"  FontWeight="Bold" BorderThickness="0" Width="300" IsReadOnly="True" VerticalAlignment="Center">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
+                                            <Setter Property="Foreground"  Value="Black" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Ischecked}" Value="True">
+                                                    <Setter Property="Foreground" Value="Gray"/>
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
                                 <Button Grid.Column="2" Content="수정" Width="50" Background="Gray" Foreground="White" BorderThickness="0"  Click="EditOrSave_Click" />
                         </StackPanel>
 
